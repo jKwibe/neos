@@ -3,12 +3,6 @@ class Service
         @date = date
     end
 
-    def conn
-        Faraday.new(
-            url: 'https://api.nasa.gov',
-            params: { start_date: @date, api_key: ENV['nasa_api_key']}
-        )
-    end 
     
     def largest_astroid_diameter
         data.map do |astroid|
@@ -37,6 +31,12 @@ class Service
     end
     
     private
+    def conn
+        Faraday.new(
+            url: 'https://api.nasa.gov',
+            params: { start_date: @date, api_key: ENV['nasa_api_key']}
+        )
+    end 
     
     def data
         asteroids_list_data = conn.get('/neo/rest/v1/feed')

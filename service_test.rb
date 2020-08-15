@@ -16,10 +16,6 @@ class ServiceTest < Minitest::Test
        assert_instance_of Service,  @service
    end
 
-   def test_it_can_connect
-       assert_equal @service.conn.class, Faraday::Connection
-   end
-
    def test_it_has_data
        assert_equal @service.largest_astroid_diameter, 10233
    end
